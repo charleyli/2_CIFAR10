@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torchsummary import summary
 
-
+# 网络测试函数
 def testNet(workNet):
     DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")  # 使用GPU或者CPU
     model = workNet.to(DEVICE)
@@ -14,7 +14,7 @@ def testNet(workNet):
 
     summary(model,(3,32,32))
 
-
+# 第1个net
 class CIFAR10Net(nn.Module):
     def __init__(self):
         super(CIFAR10Net, self).__init__()
@@ -52,8 +52,9 @@ class CIFAR10Net(nn.Module):
 
         # output = F.log_softmax(x, dim=1) # [batch_size, 10] --> [batch_size, 10]
         return x
-    
 
+
+# 第2个net
 class CNNNet(nn.Module):
     def __init__(self):
         super(CNNNet, self).__init__()
@@ -85,7 +86,7 @@ class CNNNet(nn.Module):
 
 
 
-
+# 第3个net:ResNet18
 class BasicBlock(nn.Module):
     expansion = 1
 
@@ -150,7 +151,7 @@ def ResNet18():
     return ResNet(BasicBlock, [2, 2, 2, 2])
 
 
-
+# 第4个net:ViT
 class PatchEmbedding(nn.Module):
     """
     将输入图像分成 patch 并映射到 embedding 空间
@@ -257,7 +258,7 @@ class ViT(nn.Module):
         return out
 
 
-
+# 测试网络
 if __name__ == "__main__":
     # model = ResNet18()
     # model = ViT(img_size=32, patch_size=4, emb_size=128, depth=6)

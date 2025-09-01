@@ -3,6 +3,7 @@ import torch.nn.functional as F
 from tqdm import tqdm
 import os
 import pandas as pd
+
 def train_model(model, device, train_loader, optimizer,epoch):
     # 模型的训练模式
     model.train()
